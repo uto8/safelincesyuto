@@ -8,7 +8,7 @@ class Admin::LicensesController < ApplicationController
   end
 
   def create
-    @license = License.create!(license_params)
+    @license = License.create(license_params)
     if @license.save
       flash[:success] = "資格の作成に成功しました。"
       redirect_to admin_licenses_path
