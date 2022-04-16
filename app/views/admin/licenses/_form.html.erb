@@ -1,0 +1,16 @@
+<%= form_with(model:@license, url:admin_licenses_path, method: :post, local:true) do |f| %>
+<%= render 'shared/error_messages', model: f.object %>
+<div class="card-body">
+  <div class="form-group">
+    <%= f.label :name, "資格名" %>
+    <%= f.text_field :name, class:"form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :fee, "金額"%>
+    <%= f.number_field :fee, class:"form-control" %>
+  </div>
+  </div>
+  <div class="card-footer text-right">
+    <%= f.submit "登録",class:"btn btn-primary" %>
+  </div>
+<%end%>

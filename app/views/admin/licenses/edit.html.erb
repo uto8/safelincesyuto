@@ -1,0 +1,31 @@
+<div class="row mb-5">
+  <div class="col-6 font-weight-bold">
+    <h2>資格編集</h2>
+  </div>
+  <div class="col-6 text-right">
+    <%= link_to "一覧に戻る",admin_licenses_path,class:"btn btn-warning font-weight-bold" %>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    資格更新
+  </div>
+  <%= form_for(@license, url:{controller:'licenses', action: 'update',id:@license.id}) do |f| %>
+    <%= render 'shared/error_messages', model: f.object %>
+    <div class="card-body">
+      <div class="form-group">
+        <%= f.label :name, "資格名" %>
+        <%= f.text_field :name, class:"form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :fee, "金額"%>
+        <%= f.number_field :fee, class:"form-control" %>
+      </div>
+    </div>
+    <div class="card-footer text-right">
+      <%= link_to "削除", "/admin/licenses/#{@license.id}", class:"btn btn-danger", method: :delete %>
+      <%= f.submit "登録",class:"btn btn-primary" %>
+    </div>
+  <%end%>
+</div>
