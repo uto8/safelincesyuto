@@ -1,0 +1,28 @@
+<div class="row mb-5">
+  <div class="col-6">
+    <h2 class="font-weight-bold">資格一覧</h2>
+  </div>
+  <div class="col-6 text-right">
+    <%= link_to "新規追加",new_admin_license_path,class:"btn btn-warning font-weight-bold" %>
+  </div>
+</div>
+<%= render "shared/flash_message" %>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">資格名</th>
+      <th scope="col">手当</th>
+      <th scope="col">編集</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @licenses.each do |license| %>
+      <tr>
+        <td><%= license.name %></td>
+        <td><%= license.fee %></td>
+        <td><%= link_to "編集",edit_admin_license_path(license),class:"btn btn-warning font-weight-bold" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @licenses %>

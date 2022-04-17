@@ -5,3 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+License.create!(
+  [
+    {
+      name: '社長',
+      fee: 1000
+    },
+    {
+      name: '社員',
+      fee: 800
+    },
+    {
+      name: 'バイト',
+      fee: 500
+    }
+  ]
+)
