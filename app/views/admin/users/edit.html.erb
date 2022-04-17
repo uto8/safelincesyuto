@@ -1,0 +1,36 @@
+<div class="row mb-5">
+  <div class="col-6 font-weight-bold">
+    <h2>社員更新</h2>
+  </div>
+  <div class="col-6 text-right">
+    <%= link_to "一覧に戻る",admin_users_path,class:"btn btn-warning font-weight-bold" %>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    社員編集
+  </div>
+  <%= form_for(@user, url:{controller:'users', action: 'update',id:@user.id}) do |f| %>
+    <%= render 'shared/error_messages', model: f.object %>
+    <div class="card-body">
+      <div class="form-group">
+        <%= f.label :name, "社員名" %>
+        <%= f.text_field :name, class:"form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password, "パスワード"%>
+        <%= f.text_field :password, class:"form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :admin, "管理者"%>
+        <%= f.check_box :admin, class:"" %>
+      </div>
+    </div>
+    <div class="card-footer text-right">
+      <%= link_to "削除", "/admin/users/#{@user.id}", class:"btn btn-danger", method: :delete %>
+      <%= f.submit "登録",class:"btn btn-primary" %>
+    </div>
+  <%end%>
+
+</div> 

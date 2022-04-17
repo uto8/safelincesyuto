@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/dashboard', to: 'pages#index'
     resources :licenses
+    resources :users
   end
 end
