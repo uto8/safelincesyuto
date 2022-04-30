@@ -8,33 +8,35 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <% link_to "ホーム", root_path,class:"nav-link" %>
-        <a class="nav-link" href="#">ホーム</a>
+        <%= link_to "ホーム", root_path,class:"nav-link" %>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">ログイン</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">ログアウト</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">アカウント</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">プロジェクト</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-          管理者ページ
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">管理者トップ</a>
-          <a class="dropdown-item" href="#">ユーザー</a>
-          <a class="dropdown-item" href="#">プロジェクト</a>
-          <%= link_to "資格", admin_licenses_path, class:"dropdown-item" %>
-          <a class="dropdown-item" href="#">手当</a>
-        </div>
-      </li>
+      <% if user_signed_in? %>
+        <li class="nav-item active">
+          <%= link_to 'ログアウト', destroy_user_session_path, class: 'nav-link', method: :delete %>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">アカウント</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">プロジェクト</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+            管理者ページ
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">管理者トップ</a>
+            <a class="dropdown-item" href="#">ユーザー</a>
+            <a class="dropdown-item" href="#">プロジェクト</a>
+            <%= link_to "資格", admin_licenses_path, class:"dropdown-item" %>
+            <a class="dropdown-item" href="#">手当</a>
+          </div>
+        </li>
+      <% else %>
+        <li class="nav-item active">
+          <%= link_to "ログイン", user_session_path, class:"nav-link" %>
+        </li>
+      <% end %>
     </ul>
   </div>
   </div>
