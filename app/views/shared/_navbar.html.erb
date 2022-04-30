@@ -20,18 +20,20 @@
         <li class="nav-item active">
           <a class="nav-link" href="#">プロジェクト</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-            管理者ページ
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">管理者トップ</a>
-            <%= link_to "ユーザー", admin_users_path, class:"dropdown-item" %>
-            <a class="dropdown-item" href="#">プロジェクト</a>
-            <%= link_to "資格", admin_licenses_path, class:"dropdown-item" %>
-            <a class="dropdown-item" href="#">手当</a>
-          </div>
-        </li>
+        <% if admin? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+              管理者ページ
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">管理者トップ</a>
+              <%= link_to "ユーザー", admin_users_path, class:"dropdown-item" %>
+              <a class="dropdown-item" href="#">プロジェクト</a>
+              <%= link_to "資格", admin_licenses_path, class:"dropdown-item" %>
+              <a class="dropdown-item" href="#">手当</a>
+            </div>
+          </li>
+        <% end %>
       <% else %>
         <li class="nav-item active">
           <%= link_to "ログイン", user_session_path, class:"nav-link" %>
