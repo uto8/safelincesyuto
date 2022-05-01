@@ -1,6 +1,6 @@
 <div class="row mb-5">
   <div class="col-6">
-    <h2 class="font-weight-bold">資格一覧</h2>
+    <h2 class="font-weight-bold">社員一覧</h2>
   </div>
   <div class="col-6 text-right">
     <%= link_to "新規追加",new_admin_user_path,class:"btn btn-warning font-weight-bold" %>
@@ -18,7 +18,7 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%#= user.name %></td>
+        <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= link_to "編集",edit_admin_user_path(user),class:"btn btn-warning font-weight-bold" %></td>
       </tr>
