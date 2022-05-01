@@ -1,5 +1,5 @@
 module Admin::UsersHelper
   def admin?
-    current_user.admin == true
+    current_user.is_admin == true
   end
 end
