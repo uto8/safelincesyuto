@@ -26,7 +26,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#">管理者トップ</a>
-            <a class="dropdown-item" href="#">ユーザー</a>
+            <%= link_to "ユーザー", admin_users_path, class:"dropdown-item" %>
             <a class="dropdown-item" href="#">プロジェクト</a>
             <%= link_to "資格", admin_licenses_path, class:"dropdown-item" %>
             <a class="dropdown-item" href="#">手当</a>
