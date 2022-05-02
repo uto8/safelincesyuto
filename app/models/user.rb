@@ -6,6 +6,6 @@ class User < ApplicationRecord
   validates :name, presence: true
   has_many :license_users
   has_many :licenses, through: :license_users
-  # accepts_nested_attributes_for :licenses, allow_destroy: true
+  accepts_nested_attributes_for :license_users, allow_destroy: true
   validates_associated :licenses
 end

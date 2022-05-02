@@ -19,11 +19,10 @@
     </div>
     <div class="form-group" id='detail-association-insertion-point'>
       <%= f.fields_for :license_users do |license_user| %>
-        <%= render 'license_fields', f: license_user %>
+        <%= render 'license_user_fields', f: license_user %>
       <% end %>
       <div class="add-association">
         <%= link_to_add_association f, :license_users, class: "btn btn-outline-dark" do %>
-          <i class="fa-solid fa-plus"></i>
           追加
         <% end %>
       </div>
