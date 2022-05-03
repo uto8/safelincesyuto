@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2022_04_30_075431) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["license_id"], name: "index_license_users_on_license_id"
+    t.index ["user_id", "license_id"], name: "index_license_users_on_user_id_and_license_id", unique: true
     t.index ["user_id"], name: "index_license_users_on_user_id"
   end
 

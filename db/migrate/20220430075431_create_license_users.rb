@@ -6,5 +6,6 @@ class CreateLicenseUsers < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+    add_index :license_users, [:user_id, :license_id], unique: true
   end
 end

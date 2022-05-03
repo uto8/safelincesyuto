@@ -1,8 +1,8 @@
 <div class="nested-fields mb-3 row">
-  <div class="col-6">
+  <div class="col-8">
     <%= f.collection_select :license_id, License.all, :id, :name, {prompt: "資格を選択してください"}, {class: 'form-control'} %>
   </div>
-  <div class="col-3">
+  <div class="col-4">
     <%= link_to_remove_association f do %>
       <div class="btn btn-outline-secondary">削除</div>
     <% end %>

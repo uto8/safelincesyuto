@@ -30,7 +30,7 @@ class Admin::UsersController < ApplicationController
       flash[:success] = "社員の編集に成功しました。"
       redirect_to admin_users_path
     else
-      render "new"
+      render "edit"
     end
   end
 
