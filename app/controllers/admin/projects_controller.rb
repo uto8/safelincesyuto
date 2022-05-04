@@ -40,6 +40,6 @@ class Admin::ProjectsController < ApplicationController
 
   private
   def project_params
-    params.require(:project).permit(:name, :date, :driver, :start_time, :end_time, :leader, :belongings, :address, :supplement)
+    params.require(:project).permit(:name, :date, :driver_id, :start_time, :end_time, :leader_id, :belongings, :address, :supplement)
   end
 end
