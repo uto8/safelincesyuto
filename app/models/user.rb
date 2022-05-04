@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :licenses, through: :license_users
   accepts_nested_attributes_for :license_users, allow_destroy: true
   validates_associated :licenses
+  # validationを修正
 end

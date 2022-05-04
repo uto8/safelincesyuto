@@ -10,6 +10,7 @@ class Admin::UsersController < ApplicationController
   def new
     @user = User.new
   end
+  # 同じ値が入らないようにする
   def create
     @user = User.create(user_params)
     if @user.save
