@@ -27,7 +27,7 @@ class Admin::LicensesController < ApplicationController
       flash[:success] = "資格の編集に成功しました。"
       redirect_to admin_licenses_path
     else
-      render "new"
+      render "edit"
     end
   end
 
