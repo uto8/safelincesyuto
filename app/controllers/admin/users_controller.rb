@@ -10,6 +10,7 @@ class Admin::UsersController < ApplicationController
   def new
     @user = User.new
   end
+  # 同じ値が入らないようにする
   def create
     @user = User.create(user_params)
     if @user.save
@@ -30,7 +31,7 @@ class Admin::UsersController < ApplicationController
       flash[:success] = "社員の編集に成功しました。"
       redirect_to admin_users_path
     else
-      render "new"
+      render "edit"
     end
   end
 
@@ -43,6 +44,6 @@ class Admin::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :is_admin)
+    params.require(:user).permit(:name, :email, :password, :is_admin, license_users_attributes: [:license_id, :user_id])
   end
 end
