@@ -10,13 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_30_030900) do
+ActiveRecord::Schema.define(version: 2022_05_01_061006) do
 
   create_table "licenses", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.integer "fee"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "projects", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.date "date"
+    t.bigint "driver_id"
+    t.time "start_time"
+    t.time "end_time"
+    t.bigint "leader_id"
+    t.string "belongings"
+    t.string "address"
+    t.text "supplement"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["driver_id"], name: "index_projects_on_driver_id"
+    t.index ["leader_id"], name: "index_projects_on_leader_id"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
@@ -33,4 +49,6 @@ ActiveRecord::Schema.define(version: 2022_04_30_030900) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "projects", "users", column: "driver_id"
+  add_foreign_key "projects", "users", column: "leader_id"
 end
