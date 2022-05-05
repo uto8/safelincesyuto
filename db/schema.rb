@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_04_144309) do
+ActiveRecord::Schema.define(version: 2022_05_05_072252) do
 
   create_table "license_users", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "license_id", null: false
@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(version: 2022_05_04_144309) do
     t.integer "fee"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "project_licenses", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.bigint "license_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["license_id"], name: "index_project_licenses_on_license_id"
+    t.index ["project_id"], name: "index_project_licenses_on_project_id"
   end
 
   create_table "project_users", charset: "utf8mb4", force: :cascade do |t|
@@ -70,6 +79,8 @@ ActiveRecord::Schema.define(version: 2022_05_04_144309) do
 
   add_foreign_key "license_users", "licenses"
   add_foreign_key "license_users", "users"
+  add_foreign_key "project_licenses", "licenses"
+  add_foreign_key "project_licenses", "projects"
   add_foreign_key "project_users", "projects"
   add_foreign_key "project_users", "users"
   add_foreign_key "projects", "users", column: "driver_id"

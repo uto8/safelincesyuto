@@ -44,11 +44,23 @@
       <%= f.text_area :supplement, class:"form-control" %>
     </div>
     <div class="form-group" id='detail-association-insertion-point'>
+      <%= f.label :project_users, "メンバー" %>
       <%= f.fields_for :project_users do |project_user| %>
         <%= render 'project_user_fields', f: project_user %>
       <% end %>
       <div class="add-association">
         <%= link_to_add_association f, :project_users, class: "btn btn-outline-dark" do %>
+          追加
+        <% end %>
+      </div>
+    </div>
+    <div class="form-group" id='detail-association-insertion-point'>
+      <%= f.label :project_licenses, "資格" %>
+      <%= f.fields_for :project_licenses do |project_license| %>
+        <%= render 'project_license_fields', f: project_license %>
+      <% end %>
+      <div class="add-association">
+        <%= link_to_add_association f, :project_licenses, class: "btn btn-outline-dark" do %>
           追加
         <% end %>
       </div>
