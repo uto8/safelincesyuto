@@ -5,6 +5,7 @@ class Admin::ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+    @users = User.all
   end
 
   def create
@@ -19,6 +20,7 @@ class Admin::ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
+    @users = User.all
   end
 
   def update
