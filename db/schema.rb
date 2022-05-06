@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_30_075431) do
+ActiveRecord::Schema.define(version: 2022_05_01_061006) do
 
   create_table "license_users", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "license_id", null: false
@@ -29,6 +29,22 @@ ActiveRecord::Schema.define(version: 2022_04_30_075431) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "projects", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.date "date"
+    t.bigint "driver_id"
+    t.time "start_time"
+    t.time "end_time"
+    t.bigint "leader_id"
+    t.string "belongings"
+    t.string "address"
+    t.text "supplement"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["driver_id"], name: "index_projects_on_driver_id"
+    t.index ["leader_id"], name: "index_projects_on_leader_id"
+  end
+
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -45,4 +61,6 @@ ActiveRecord::Schema.define(version: 2022_04_30_075431) do
 
   add_foreign_key "license_users", "licenses"
   add_foreign_key "license_users", "users"
+  add_foreign_key "projects", "users", column: "driver_id"
+  add_foreign_key "projects", "users", column: "leader_id"
 end
