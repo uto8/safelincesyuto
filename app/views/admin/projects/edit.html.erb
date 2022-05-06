@@ -24,7 +24,7 @@
       </div>
       <div class="form-group">
         <%= f.label :driver_id, "ドライバー" %>
-        <%= f.collection_select :driver_id, User.all, :id, :name, {prompt: "ドライバーを選択してください"}, {class: 'form-control'} %>
+        <%= f.collection_select :driver_id, @users, :id, :name, {prompt: "ドライバーを選択してください"}, {class: 'form-control'} %>
       </div>
       <div class="row">
         <div class="col">
@@ -42,7 +42,7 @@
       </div>
       <div class="form-group">
         <%= f.label :leader_id, "リーダー" %>
-        <%= f.collection_select :leader_id, User.all, :id, :name, {prompt: "リーダーを選択してください"}, {class: 'form-control'} %>
+        <%= f.collection_select :leader_id, @users, :id, :name, {prompt: "リーダーを選択してください"}, {class: 'form-control'} %>
       </div>
       <div class="form-group">
         <%= f.label :belongings, "持ち物" %>
