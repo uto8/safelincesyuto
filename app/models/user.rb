@@ -11,4 +11,7 @@ class User < ApplicationRecord
   # validationを修正
   has_many :project_users
   has_many :projects, through: :project_users
+
+  has_many :drivers
+  has_many :projects, through: :drivers
 end
