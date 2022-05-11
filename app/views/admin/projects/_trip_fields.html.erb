@@ -1,0 +1,10 @@
+<div class="nested-fields mb-3 row">
+  <div class="col-8">
+    <%= f.collection_select :user_id, User.all, :id, :name, {prompt: "出張を選択してください"}, {class: 'form-control'} %>
+  </div>
+  <div class="col-4">
+    <%= link_to_remove_association f do %>
+      <div class="btn btn-outline-secondary">削除</div>
+    <% end %>
+  </div>
+</div>

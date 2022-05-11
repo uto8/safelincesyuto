@@ -14,4 +14,7 @@ class User < ApplicationRecord
 
   has_many :drivers
   has_many :projects, through: :drivers
+
+  has_many :trips
+  has_many :projects, through: :trips
 end

@@ -16,4 +16,9 @@ class Project < ApplicationRecord
   has_many :users, through: :drivers
   accepts_nested_attributes_for :drivers, allow_destroy: true
   validates_associated :users
+
+  has_many :trips, dependent: :destroy
+  has_many :users, through: :trips
+  accepts_nested_attributes_for :trips, allow_destroy: true
+  validates_associated :users
 end
