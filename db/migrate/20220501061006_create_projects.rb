@@ -8,6 +8,7 @@ class CreateProjects < ActiveRecord::Migration[6.1]
       t.references :leader, foreign_key: { to_table: :users }, null: true
       t.string :address
       t.text :supplement
+      t.boolean :is_read
 
       t.timestamps
     end

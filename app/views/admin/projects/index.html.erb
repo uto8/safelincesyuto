@@ -17,11 +17,13 @@
   </thead>
   <tbody>
     <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.name %></td>
-        <td><%#= project.fee %></td>
-        <td><%= link_to "編集",edit_admin_project_path(project),class:"btn btn-warning font-weight-bold" %></td>
-      </tr>
+      <% if admin? or project.is_read == nil %>
+        <tr>
+          <td><%= project.name %></td>
+          <td><%#= project.fee %></td>
+          <td><%= link_to "編集",edit_admin_project_path(project),class:"btn btn-warning font-weight-bold" %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
