@@ -9,4 +9,6 @@ class Project < ApplicationRecord
   has_many :licenses, through: :project_licenses
   accepts_nested_attributes_for :project_licenses, allow_destroy: true
   validates_associated :licenses
+  has_many :user_allowances
+  accepts_nested_attributes_for :user_allowances, allow_destroy: true
 end

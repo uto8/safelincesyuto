@@ -6,6 +6,7 @@ class Admin::ProjectsController < ApplicationController
   def new
     @project = Project.new
     @users = User.all
+    
   end
 
   def create
@@ -42,6 +43,10 @@ class Admin::ProjectsController < ApplicationController
 
   private
   def project_params
-    params.require(:project).permit(:name, :date, :driver_id, :start_time, :end_time, :leader_id, :belongings, :address, :supplement, project_users_attributes: [:project_id, :user_id], project_licenses_attributes: [:project_id, :license_id])
+    params.require(:project).permit(:name, :date, :driver_id, :start_time, :end_time, :leader_id, :belongings, :address, :supplement,
+      project_users_attributes: [:project_id, :user_id],
+      project_licenses_attributes: [:project_id, :license_id],
+      user_allowance_attributes: [:user_id, :license_id, :price, :date, :project_id]
+    )
   end
 end

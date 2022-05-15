@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_05_072252) do
+ActiveRecord::Schema.define(version: 2022_05_15_054025) do
 
   create_table "license_users", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "license_id", null: false
@@ -63,6 +63,17 @@ ActiveRecord::Schema.define(version: 2022_05_05_072252) do
     t.index ["leader_id"], name: "index_projects_on_leader_id"
   end
 
+  create_table "user_allowances", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "license_id", null: false
+    t.integer "price"
+    t.date "date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["license_id"], name: "index_user_allowances_on_license_id"
+    t.index ["user_id"], name: "index_user_allowances_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -85,4 +96,6 @@ ActiveRecord::Schema.define(version: 2022_05_05_072252) do
   add_foreign_key "project_users", "users"
   add_foreign_key "projects", "users", column: "driver_id"
   add_foreign_key "projects", "users", column: "leader_id"
+  add_foreign_key "user_allowances", "licenses"
+  add_foreign_key "user_allowances", "users"
 end

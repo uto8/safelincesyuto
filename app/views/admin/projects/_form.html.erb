@@ -27,6 +27,12 @@
         </div>
       </div>
     </div>
+    <%# user_allowancesテーブルに保存 %>
+    <%= f.fields_for :user_allowances do |ff| %>
+      <%= f.collection_select :user_id, @users, :id, :name, {prompt: "リーダーを選択してください"}, {class: 'form-control'} %>
+      <%= f.collection_select :license_id, License.all, :id, :name, {prompt: "資格を選択してください"}, {class: 'form-control'} %>
+      <%= f.hidden_field :project_id, :value => @project %>
+    <% end %>
     <div class="form-group">
       <%= f.label :leader_id, "リーダー" %>
       <%= f.collection_select :leader_id, @users, :id, :name, {prompt: "リーダーを選択してください"}, {class: 'form-control'} %>
