@@ -45,6 +45,8 @@ class Admin::ProjectsController < ApplicationController
     params.require(:project).permit(:name, :date, :driver_id, :start_time, :end_time, :leader_id, :belongings, :address, :supplement,
        project_users_attributes: [:project_id, :user_id],
        project_licenses_attributes: [:project_id, :license_id],
-       drivers_attributes: [:project_id, :user_id])
+       drivers_attributes: [:project_id, :user_id],
+       trips_attributes: [:project_id, :user_id]
+      )
   end
 end
