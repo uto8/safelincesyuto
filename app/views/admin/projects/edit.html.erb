@@ -91,6 +91,12 @@
         <%= f.label :supplement, "備考" %>
         <%= f.text_area :supplement, class:"form-control" %>
       </div>
+      <% if admin? %>
+        <div class="form-group form-check">
+          <%= f.check_box :is_read, class:"form-check-input" %>
+          <%= f.label :is_read, "既読", class:"form-check-label" %>
+        </div>
+      <% end %>
     </div>
     <div class="card-footer text-right">
       <%= link_to "削除", "/admin/projects/#{@project.id}", class:"btn btn-danger", method: :delete %>
