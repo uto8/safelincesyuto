@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_05_072252) do
+ActiveRecord::Schema.define(version: 2022_05_11_085934) do
+
+  create_table "drivers", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_drivers_on_project_id"
+    t.index ["user_id"], name: "index_drivers_on_user_id"
+  end
 
   create_table "license_users", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "license_id", null: false
@@ -50,7 +59,6 @@ ActiveRecord::Schema.define(version: 2022_05_05_072252) do
   create_table "projects", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.date "date"
-    t.bigint "driver_id"
     t.time "start_time"
     t.time "end_time"
     t.bigint "leader_id"
@@ -59,7 +67,6 @@ ActiveRecord::Schema.define(version: 2022_05_05_072252) do
     t.text "supplement"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["driver_id"], name: "index_projects_on_driver_id"
     t.index ["leader_id"], name: "index_projects_on_leader_id"
   end
 
@@ -77,12 +84,13 @@ ActiveRecord::Schema.define(version: 2022_05_05_072252) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "drivers", "projects"
+  add_foreign_key "drivers", "users"
   add_foreign_key "license_users", "licenses"
   add_foreign_key "license_users", "users"
   add_foreign_key "project_licenses", "licenses"
   add_foreign_key "project_licenses", "projects"
   add_foreign_key "project_users", "projects"
   add_foreign_key "project_users", "users"
-  add_foreign_key "projects", "users", column: "driver_id"
   add_foreign_key "projects", "users", column: "leader_id"
 end
