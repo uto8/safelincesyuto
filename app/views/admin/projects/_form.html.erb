@@ -1,13 +1,39 @@
 <%= form_with(model:@project, url:admin_projects_path, method: :post, local:true) do |f| %>
 <%= render 'shared/error_messages', model: f.object %>
   <div class="card-body">
+    <%= f.hidden_field :leader_id, :value => current_user.id %>
     <div class="form-group">
-      <%= f.label :name, "名前" %>
+      <%= f.label :name, "業者名" %>
       <%= f.text_field :name, class:"form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label :date, "メールアドレス" %>
+      <%= f.label :date, "日付" %>
       <%= f.date_field :date, class:"form-control" %>
+    </div>
+    <div class="form-group" id='detail-association-insertion-point'>
+      <%= f.label :project_users, "メンバー" %>
+      <%= f.fields_for :project_users do |project_user| %>
+        <%= render 'project_user_fields', f: project_user %>
+      <% end %>
+      <div class="add-association">
+        <%= link_to_add_association f, :project_users, class: "btn btn-outline-dark" do %>
+          追加
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <%= f.label :start_time, "開始時間" %>
+          <%= f.time_field :start_time, class:"form-control" %>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <%= f.label :end_time, "終了時間" %>
+          <%= f.time_field :end_time, class:"form-control" %>
+        </div>
+      </div>
     </div>
     <div class="form-group" id='detail-association-insertion-point'>
       <%= f.label :drivers, "運転" %>
@@ -31,47 +57,6 @@
         <% end %>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <div class="form-group">
-          <%= f.label :start_time, "開始時間" %>
-          <%= f.time_field :start_time, class:"form-control" %>
-        </div>
-      </div>
-      <div class="col">
-        <div class="form-group">
-          <%= f.label :end_time, "終了時間" %>
-          <%= f.time_field :end_time, class:"form-control" %>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :leader_id, "リーダー" %>
-      <%= f.collection_select :leader_id, @users, :id, :name, {prompt: "リーダーを選択してください"}, {class: 'form-control'} %>
-    </div>
-    <div class="form-group">
-      <%= f.label :belongings, "持ち物" %>
-      <%= f.text_field :belongings, class:"form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :address, "場所" %>
-      <%= f.text_field :address, class:"form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :supplement, "備考" %>
-      <%= f.text_area :supplement, class:"form-control" %>
-    </div>
-    <div class="form-group" id='detail-association-insertion-point'>
-      <%= f.label :project_users, "メンバー" %>
-      <%= f.fields_for :project_users do |project_user| %>
-        <%= render 'project_user_fields', f: project_user %>
-      <% end %>
-      <div class="add-association">
-        <%= link_to_add_association f, :project_users, class: "btn btn-outline-dark" do %>
-          追加
-        <% end %>
-      </div>
-    </div>
     <div class="form-group" id='detail-association-insertion-point'>
       <%= f.label :project_licenses, "資格" %>
       <%= f.fields_for :project_licenses do |project_license| %>
@@ -82,6 +67,14 @@
           追加
         <% end %>
       </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :address, "場所" %>
+      <%= f.text_field :address, class:"form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :supplement, "備考" %>
+      <%= f.text_area :supplement, class:"form-control" %>
     </div>
   </div>
   <div class="card-footer text-right">
