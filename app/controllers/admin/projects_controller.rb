@@ -47,6 +47,7 @@ class Admin::ProjectsController < ApplicationController
        project_licenses_attributes: [:project_id, :license_id],
        drivers_attributes: [:project_id, :user_id],
        trips_attributes: [:project_id, :user_id]
+       user_allowances_attributes: [:user_id, :license_id, :price, :date]
       )
   end
 end
