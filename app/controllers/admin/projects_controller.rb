@@ -48,11 +48,7 @@ class Admin::ProjectsController < ApplicationController
        project_users_attributes: [:project_id, :user_id],
        project_licenses_attributes: [:project_id, :license_id],
        drivers_attributes: [:project_id, :user_id],
-       trips_attributes: [:project_id, :user_id],
-       user_allowances_attributes: [:user_id, :license_id, :price, :date]
+       trips_attributes: [:project_id, :user_id]
       )
-  end
-  def user_allowance_params
-    params.require(:user_allowance).permit(:user_id, :license_id, :price, :date)
   end
 end
