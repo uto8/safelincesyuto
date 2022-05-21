@@ -12,9 +12,9 @@ class Admin::ProjectsController < ApplicationController
     @project = Project.create(project_params)
     if @project.save
       flash[:success] = "伝票の作成に成功しました。"
-      redirect_to admin_projects_path
       @leader_license = License.find_by(name: "隊長手当")
       @user_allowance = UserAllowance.create(user_id: @project.leader_id, license_id: @leader_license, date: @project.date, price: @leader_license.fee)
+      redirect_to admin_projects_path
     else
       render "new"
     end

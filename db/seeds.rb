@@ -48,7 +48,6 @@ Project.create!(
       start_time: '2000-01-01 09:45:00.000000000 +0000',
       end_time: '2000-01-01 18:45:00.000000000 +0000',
       leader_id: 2,
-      belongings: '持ち物１',
       address: '場所１',
       supplement: '備考１'
     },
@@ -58,7 +57,6 @@ Project.create!(
       start_time: '2000-01-01 09:45:00.000000000 +0000',
       end_time: '2000-01-01 18:45:00.000000000 +0000',
       leader_id: 1,
-      belongings: '持ち物２',
       address: '場所２',
       supplement: '備考２'
     }
