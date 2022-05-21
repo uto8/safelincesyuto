@@ -62,9 +62,9 @@ ActiveRecord::Schema.define(version: 2022_05_20_134802) do
     t.time "start_time"
     t.time "end_time"
     t.bigint "leader_id"
-    t.string "belongings"
     t.string "address"
     t.text "supplement"
+    t.boolean "is_read"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["leader_id"], name: "index_projects_on_leader_id"
