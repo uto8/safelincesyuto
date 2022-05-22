@@ -13,7 +13,11 @@ class Admin::ProjectsController < ApplicationController
     if @project.save
       flash[:success] = "伝票の作成に成功しました。"
       @leader_license = License.find_by(name: "隊長手当")
-      @user_allowance = UserAllowance.create(user_id: @project.leader_id, license_id: @leader_license.id, date: @project.date, price: @leader_license.fee)
+      UserAllowance.create(user_id: @project.leader_id, license_id: @leader_license.id, date: @project.date, price: @leader_license.fee)
+      @driver_license = License.find_by(name: "運転手当")
+      @project.drivers.each do |driver| 
+        UserAllowance.create!(user_id: driver.user_id, license_id: @driver_license.id, date: @project.date, price: @driver_license.fee)
+      end
       redirect_to admin_projects_path
     else
       render "new"
@@ -44,7 +48,7 @@ class Admin::ProjectsController < ApplicationController
 
   private
   def project_params
-    params.require(:project).permit(:name, :date, :driver_id, :start_time, :end_time, :leader_id, :address, :supplement, :is_read,
+    params.require(:project).permit(:name, :date, :start_time, :end_time, :leader_id, :address, :supplement, :is_read,
        project_users_attributes: [:project_id, :user_id],
        project_licenses_attributes: [:project_id, :license_id],
        drivers_attributes: [:project_id, :user_id],
