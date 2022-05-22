@@ -18,6 +18,10 @@ class Admin::ProjectsController < ApplicationController
       @project.drivers.each do |driver| 
         UserAllowance.create!(user_id: driver.user_id, license_id: @driver_license.id, date: @project.date, price: @driver_license.fee)
       end
+      @trip_license = License.find_by(name: "出張手当")
+      @project.trips.each do |trip| 
+        UserAllowance.create!(user_id: trip.user_id, license_id: @trip_license.id, date: @project.date, price: @trip_license.fee)
+      end
       redirect_to admin_projects_path
     else
       render "new"
