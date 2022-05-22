@@ -1,7 +1,6 @@
 class Admin::ProjectsController < ApplicationController
   def index
     @projects = Project.page(params[:page]).per(10)
-    @p=UserAllowance.where(price:900)
   end
 
   def new
