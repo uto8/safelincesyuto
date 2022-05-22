@@ -1,6 +1,7 @@
 class Admin::ProjectsController < ApplicationController
   def index
     @projects = Project.page(params[:page]).per(10)
+    @p=UserAllowance.where(price:900)
   end
 
   def new
@@ -15,7 +16,9 @@ class Admin::ProjectsController < ApplicationController
       @leader_license = License.find_by(name: "隊長手当")
       UserAllowance.create(user_id: @project.leader_id, license_id: @leader_license.id, date: @project.date, price: @leader_license.fee)
       @driver_license = License.find_by(name: "運転手当")
-      UserAllowance.create!(user_id: @project.drivers.user_id, license_id: @driver_license.id, date: @project.date, price: @driver_license.fee)
+      @project.drivers.each do |driver| 
+        UserAllowance.create!(user_id: driver.user_id, license_id: @driver_license.id, date: @project.date, price: @driver_license.fee)
+      end
       redirect_to admin_projects_path
     else
       render "new"
