@@ -22,6 +22,19 @@ class Admin::ProjectsController < ApplicationController
       @project.trips.each do |trip| 
         UserAllowance.create!(user_id: trip.user_id, license_id: @trip_license.id, date: @project.date, price: @trip_license.fee)
       end
+      # その他資格保存
+      @licenses = @project.project_licenses
+      @members = @project.project_users
+      @licenses.each do |license|
+        @members.each do |member|
+          @member_licenses = member.user.license_users
+          @member_licenses.each do |m|
+            if m.license_id == license.license_id
+              UserAllowance.create!(user_id: member.user_id, license_id: license.license_id, date: @project.date, price: license.license.fee)
+            end
+          end
+        end
+      end
       redirect_to admin_projects_path
     else
       render "new"
