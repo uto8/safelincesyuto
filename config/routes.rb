@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     resources :licenses
     resources :users
     resources :projects
+    resources :user_allowances
   end
 end
