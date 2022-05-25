@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :licenses
     resources :users
     resources :projects
-    resources :user_allowances
+    get '/user_allowances', to: 'user_allowances#index'
+    get '/user_allowances/:year/:month', to: 'user_allowances#user_list'
+    get '/user_allowances/:year/:month/:id', to: 'user_allowances#user_allowance'
   end
 end
