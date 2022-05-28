@@ -1,13 +1,11 @@
-<%= month_calendar do |date| %>
-  <%= date.day %>
-<% end %>
-<%= week_calendar(number_of_weeks: 2) do |date| %>
-  <%= date %>
-<% end %>
-<%= calendar(number_of_days: 4) do |date| %>
-  <%= date %>
-<% end %>
-<%= calendar(start_date_param: :my_date) do |date| %>
-  <%= date %>
-<% end %>
-
+<table>
+  <tbody>
+    <% @monthly_allowance.each do |allowance| %>
+      <tr>
+        <td>
+          <%= link_to allowance.month, "", class: "font-weight-bold" %>の給与
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
