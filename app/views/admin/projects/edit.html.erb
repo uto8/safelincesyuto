@@ -46,6 +46,10 @@
           </div>
         </div>
       </div>
+      <div class="form-group form-check">
+        <%= f.check_box :is_registration, class:"form-check-input" %>
+        <%= f.label :is_registration, "規制", class:"form-check-label" %>
+      </div>
       <div class="form-group" id='detail-association-insertion-point'>
         <%= f.label :drivers, "運転" %>
         <%= f.fields_for :drivers do |driver| %>
