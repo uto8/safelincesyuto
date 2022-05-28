@@ -1,6 +1,6 @@
 <div class="nested-fields mb-3 row">
   <div class="col-8">
-    <%= f.collection_select :user_id, @members, :id, :id, {prompt: "出張者を選択してください"}, {class: 'form-control'} %>
+    <%= f.select :user_id, @members.map{|member| [member.user.name, member.user_id]}, {prompt: "出張者を選択してください"}, {class: 'form-control'} %>
   </div>
   <div class="col-4">
     <%= link_to_remove_association f do %>
