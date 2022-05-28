@@ -19,6 +19,24 @@ User.create!(
       email: 'nomura@gmail.com',
       password: '12345678',
       is_admin: false
+    },
+    {
+      name: '部長',
+      email: 'butyou@gmail.com',
+      password: '12345678',
+      is_admin: false
+    },
+    {
+      name: '課長',
+      email: 'katyou@gmail.com',
+      password: '12345678',
+      is_admin: false
+    },
+    {
+      name: '係長',
+      email: 'kakarityou@gmail.com',
+      password: '12345678',
+      is_admin: false
     }
   ]
 )
@@ -36,6 +54,22 @@ License.create!(
     {
       name: 'バイト',
       fee: 500
+    },
+    {
+      name: '運転手当',
+      fee: 1500
+    },
+    {
+      name: '出張手当',
+      fee: 2500
+    },
+    {
+      name: '規制手当',
+      fee: 3500
+    },
+    {
+      name: '隊長手当',
+      fee: 4500
     }
   ]
 )

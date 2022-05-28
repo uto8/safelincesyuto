@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_28_151548) do
+ActiveRecord::Schema.define(version: 2022_05_20_134802) do
 
   create_table "drivers", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "project_id", null: false
@@ -91,15 +91,6 @@ ActiveRecord::Schema.define(version: 2022_05_28_151548) do
     t.index ["user_id"], name: "index_user_allowances_on_user_id"
   end
 
-  create_table "user_registrations", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "project_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id"], name: "index_user_registrations_on_project_id"
-    t.index ["user_id"], name: "index_user_registrations_on_user_id"
-  end
-
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -127,6 +118,4 @@ ActiveRecord::Schema.define(version: 2022_05_28_151548) do
   add_foreign_key "trips", "users"
   add_foreign_key "user_allowances", "licenses"
   add_foreign_key "user_allowances", "users"
-  add_foreign_key "user_registrations", "projects"
-  add_foreign_key "user_registrations", "users"
 end
