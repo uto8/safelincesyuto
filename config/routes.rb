@@ -9,6 +9,6 @@ Rails.application.routes.draw do
     resources :projects
     get '/user_allowances', to: 'user_allowances#index'
     get '/user_allowances/:month', to: 'user_allowances#list'
-    get '/user_allowances/:month/:id', to: 'user_allowances#allowance'
+    get '/user_allowances/:month/:user_id', to: 'user_allowances#allowance'
   end
 end
