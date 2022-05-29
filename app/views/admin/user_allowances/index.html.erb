@@ -3,7 +3,7 @@
     <% @monthly_allowance.each do |allowance| %>
       <tr>
         <td>
-          <%= link_to allowance.month, "", class: "font-weight-bold" %>の給与
+          <%= link_to allowance.month, admin_path(allowance.month), class: "font-weight-bold" %>の給与
         </td>
       </tr>
     <% end %>
