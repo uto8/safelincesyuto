@@ -6,6 +6,7 @@ class CreateProjects < ActiveRecord::Migration[6.1]
       t.time :start_time
       t.time :end_time
       t.references :leader, foreign_key: { to_table: :users }, null: true
+      t.boolean :is_registration
       t.string :address
       t.text :supplement
       t.boolean :is_read
