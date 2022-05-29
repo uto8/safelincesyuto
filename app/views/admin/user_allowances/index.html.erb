@@ -1,9 +1,44 @@
+<div class="row mb-5">
+  <div class="col-6">
+    <h2 class="font-weight-bold">手当月一覧</h2>
+  </div>
+  <div class="col-6 text-right">
+  </div>
+</div>
 <table>
   <tbody>
     <% @monthly_allowance.each do |allowance| %>
       <tr>
         <td>
           <%= link_to allowance.month, admin_path(allowance.month), class: "font-weight-bold" %>の給与
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<table class="table mt-5">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">日付</th>
+      <th scope="col">名前</th>
+      <th scope="col">手当名</th>
+      <th scope="col">金額</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @allowances.each do |allowance| %>
+      <tr>
+        <td>
+          <%= link_to allowance.date, "", class: "font-weight-bold" %>
+        </td>
+        <td>
+          <%= link_to allowance.user.name, "", class: "font-weight-bold" %>
+        </td>
+        <td>
+          <%= link_to allowance.license.name, "", class: "font-weight-bold" %>
+        </td>
+        <td>
+          <%= link_to allowance.price, "", class: "font-weight-bold" %>
         </td>
       </tr>
     <% end %>

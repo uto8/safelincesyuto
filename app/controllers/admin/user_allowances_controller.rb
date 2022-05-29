@@ -1,8 +1,10 @@
 class Admin::UserAllowancesController < ApplicationController
   def index
     @monthly_allowance = UserAllowance.group("DATE_FORMAT(date, '%Y%m')").select("DATE_FORMAT(date, '%Y%m') as month")
+    @allowances = UserAllowance.all
   end
   def list
+    @month = params[:month]
     @monthly_allowance = UserAllowance.where("DATE_FORMAT(date, '%Y%m') = DATE_FORMAT(date, '%Y%m')").group(:user_id).select(":user_id as user")
   end
   def allowance
