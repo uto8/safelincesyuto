@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2022_05_20_134802) do
     t.time "start_time"
     t.time "end_time"
     t.bigint "leader_id"
+    t.boolean "is_registration"
     t.string "address"
     t.text "supplement"
     t.boolean "is_read"

@@ -22,6 +22,12 @@ class Admin::ProjectsController < ApplicationController
       @project.trips.each do |trip| 
         UserAllowance.create!(user_id: trip.user_id, license_id: @trip_license.id, date: @project.date, price: @trip_license.fee)
       end
+      if @project.is_registration == true
+        @registration_license = License.find_by(name: "規制手当")
+        @project.project_users.each do |user|
+          UserAllowance.create!(user_id: user.user_id, license_id: @registration_license.id, date: @project.date, price: @registration_license.fee)
+        end
+      end
       # その他資格保存
       @licenses = @project.project_licenses
       @members = @project.project_users
@@ -66,7 +72,7 @@ class Admin::ProjectsController < ApplicationController
 
   private
   def project_params
-    params.require(:project).permit(:name, :date, :start_time, :end_time, :leader_id, :address, :supplement, :is_read,
+    params.require(:project).permit(:name, :date, :start_time, :end_time, :leader_id, :is_registration, :address, :supplement, :is_read,
        project_users_attributes: [:project_id, :user_id],
        project_licenses_attributes: [:project_id, :license_id],
        drivers_attributes: [:project_id, :user_id],
