@@ -1,0 +1,32 @@
+<div class="row mb-5">
+  <div class="col-6">
+    <h2 class="font-weight-bold"><%= @user.name %><br><%= @month %>手当一覧</h2>
+  </div>
+  <div class="col-6 text-right">
+    <%= link_to "手当月一覧",admin_user_allowances_path,class:"btn btn-warning font-weight-bold" %>
+  </div>
+</div>
+<%= month_calendar events:@user_allowances do |date,allowance| %>
+  <%= date %>
+<% end %>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">手当名</th>
+      <th scope="col">月合計</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @monthly_allowances_sum.each do |allowance| %>
+      <tr>
+        <td>
+          <%= allowance.title %>
+        </td>
+        <td>
+          <%= allowance.price %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

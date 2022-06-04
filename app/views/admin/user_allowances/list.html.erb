@@ -6,3 +6,21 @@
     <%= link_to "手当月一覧",admin_user_allowances_path,class:"btn btn-warning font-weight-bold" %>
   </div>
 </div>
+<table class="table mt-5">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">名前</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @monthly_allowances.each do |user| %>
+      <tr>
+        <td>
+          <%= link_to user.user.name, admin_admin_user_allowance_allowance_path(@month, user.user_id), class: "font-weight-bold" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

@@ -39,6 +39,6 @@ class Admin::LicensesController < ApplicationController
 
   private
   def license_params
-    params.require(:license).permit(:name, :fee)
+    params.require(:license).permit(:title, :fee)
   end
 end

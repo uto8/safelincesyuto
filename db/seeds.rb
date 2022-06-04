@@ -44,31 +44,31 @@ User.create!(
 License.create!(
   [
     {
-      name: '社長',
+      title: '社長',
       fee: 1000
     },
     {
-      name: '社員',
+      title: '社員',
       fee: 800
     },
     {
-      name: 'バイト',
+      title: 'バイト',
       fee: 500
     },
     {
-      name: '運転手当',
+      title: '運転手当',
       fee: 1500
     },
     {
-      name: '出張手当',
+      title: '出張手当',
       fee: 2500
     },
     {
-      name: '規制手当',
+      title: '規制手当',
       fee: 3500
     },
     {
-      name: '隊長手当',
+      title: '隊長手当',
       fee: 4500
     }
   ]
