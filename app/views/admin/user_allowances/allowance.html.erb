@@ -6,27 +6,31 @@
     <%= link_to "手当月一覧",admin_user_allowances_path,class:"btn btn-warning font-weight-bold" %>
   </div>
 </div>
-<%= month_calendar events:@user_allowances do |date,allowance| %>
-  <%= date %>
-<% end %>
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">手当名</th>
-      <th scope="col">月合計</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @monthly_allowances_sum.each do |allowance| %>
-      <tr>
-        <td>
-          <%= allowance.title %>
-        </td>
-        <td>
-          <%= allowance.price %>
-        </td>
-      </tr>
+<div class="table-responsive mb-3">
+  <%= month_calendar events:@user_allowances do |date,allowances| %>
+    <%= date %><br>
+    <% allowances.each do |allowance| %>
+      <%= allowance.title %> <%= allowance.price %>円<br>
     <% end %>
-  </tbody>
-</table>
-
+  <% end %>
+</div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">手当名</th>
+        <th scope="col">月合計</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @monthly_allowances_sum.each do |allowance| %>
+        <tr>
+          <td>
+            <%= allowance.title %>
+          </td>
+          <td>
+            <%= allowance.price %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
