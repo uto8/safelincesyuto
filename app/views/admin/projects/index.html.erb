@@ -6,6 +6,36 @@
     <%= link_to "新規追加",new_admin_project_path,class:"btn btn-warning font-weight-bold" %>
   </div>
 </div>
+<div class="card mb-4">
+  <div class="card-header">
+    Featured
+  </div>
+  <div class="card-body">
+    <%= search_form_for(@q, url:admin_projects_path) do |f| %>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <%= f.label :name_eq, "業者名" %>
+            <%= f.text_field :name_eq, class:"form-control" %>
+          </div>
+        </div>
+        <div class="col-12 row">
+          <div class="col-6">
+            <div class="form-group">
+              <%= f.date_field :date_gteq, class:"form-control" %>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <%= f.date_field :date_lteq, class:"form-control" %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%= f.submit "検索", class:"btn btn-warning font-weight-bold" %>
+    <% end %>
+  </div>
+</div>
 <%= render "shared/flash_message" %>
 <table class="table">
   <thead class="thead-light">
@@ -16,13 +46,25 @@
     </tr>
   </thead>
   <tbody>
-    <% @projects.each do |project| %>
-      <% if admin? or project.is_read == nil %>
-        <tr>
-          <td><%= project.date %></td>
-          <td><%= project.name %></td>
-          <td><%= link_to "編集",edit_admin_project_path(project),class:"btn btn-warning font-weight-bold" %></td>
-        </tr>
+    <% if @project_results.present? %>
+      <% @project_results.each do |project| %>
+        <% if admin? or project.is_read == nil %>
+          <tr>
+            <td><%= project.date %></td>
+            <td><%= project.name %></td>
+            <td><%= link_to "編集",edit_admin_project_path(project),class:"btn btn-warning font-weight-bold" %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% else %>
+      <% @projects.each do |project| %>
+        <% if admin? or project.is_read == nil %>
+          <tr>
+            <td><%= project.date %></td>
+            <td><%= project.name %></td>
+            <td><%= link_to "編集",edit_admin_project_path(project),class:"btn btn-warning font-weight-bold" %></td>
+          </tr>
+        <% end %>
       <% end %>
     <% end %>
   </tbody>
