@@ -18,6 +18,7 @@
     <thead class="thead-dark">
       <tr>
         <th scope="col">手当名</th>
+        <th scope="col">回数</th>
         <th scope="col">月合計</th>
       </tr>
     </thead>
@@ -26,6 +27,9 @@
         <tr>
           <td>
             <%= allowance.title %>
+          </td>
+          <td>
+            <%= allowance.count %>
           </td>
           <td>
             <%= allowance.price %>

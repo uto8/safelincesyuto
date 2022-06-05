@@ -13,6 +13,6 @@ class Admin::UserAllowancesController < ApplicationController
     @user = User.find(params[:id])
     @user_allowances = UserAllowance.where(user_id: @user).joins(:license).select(:date,:title,:license_id,:price)
     @monthly_allowances = UserAllowance.where("(DATE_FORMAT(date,'%Y%m') = #{@month}) AND (user_id = #{@user_id}) ")
-    @monthly_allowances_sum = UserAllowance.where("(DATE_FORMAT(date, '%Y%m') = #{@month}) AND (user_id = #{@user_id})").joins(:license).group(:license_id).select("title, sum(price) as price")
+    @monthly_allowances_sum = UserAllowance.where("(DATE_FORMAT(date, '%Y%m') = #{@month}) AND (user_id = #{@user_id})").joins(:license).group(:license_id).select("title, sum(price) as price, count(*) as count")
   end
 end
