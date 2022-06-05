@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/dashboard', to: 'pages#index'
     get '/user_allowances', to: 'user_allowances#index'
-    get 'user_allowances/:month', to: 'user_allowances#list', as: :admin_user_allowance_list
-    get 'user_allowances/:month/user/:id', to: 'user_allowances#allowance', as: :admin_user_allowance_allowance
+    get 'user_allowances/:month', to: 'user_allowances#list', as: :user_allowance_list
+    get 'user_allowances/:month/user/:id', to: 'user_allowances#allowance', as: :user_allowance_allowance
     resources :licenses
     resources :users
     resources :projects
