@@ -46,6 +46,10 @@
           </div>
         </div>
       </div>
+      <div class="form-group">
+        <%= f.label :leader_id, "隊長", class:"form-label" %>
+        <%= f.select :leader_id, @members.map{|member| [member.user.name, member.user_id]}, {prompt: "隊長を選択してください"}, {class: 'form-control'} %>
+      </div>
       <div class="form-group form-check">
         <%= f.check_box :is_registration, class:"form-check-input" %>
         <%= f.label :is_registration, "規制", class:"form-check-label" %>
@@ -71,10 +75,6 @@
             追加
           <% end %>
         </div>
-      </div>
-      <div class="form-group">
-        <%= f.label :leader_id, "リーダー" %>
-        <%= f.collection_select :leader_id, @users, :id, :name, {prompt: "リーダーを選択してください"}, {class: 'form-control'} %>
       </div>
       <div class="form-group" id='detail-association-insertion-point'>
         <%= f.label :project_licenses, "資格" %>

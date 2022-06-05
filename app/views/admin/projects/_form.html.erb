@@ -1,7 +1,6 @@
 <%= form_with(model:@project, url:admin_projects_path, method: :post, local:true) do |f| %>
 <%= render 'shared/error_messages', model: f.object %>
   <div class="card-body">
-    <%= f.hidden_field :leader_id, :value => current_user.id %>
     <div class="form-group">
       <%= f.label :name, "業者名" %>
       <%= f.text_field :name, class:"form-control" %>
