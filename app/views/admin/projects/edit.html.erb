@@ -9,13 +9,13 @@
 <%= render "shared/flash_message" %>
 <div class="card">
   <div class="card-header">
-    資格更新
+    伝票更新
   </div>
   <%= form_for(@project, url:{controller:'projects', action: 'update',id:@project.id}) do |f| %>
     <%= render 'shared/error_messages', model: f.object %>
     <div class="card-body">
       <div class="form-group">
-        <%= f.label :name, "名前" %>
+        <%= f.label :name, "業者名" %>
         <%= f.text_field :name, class:"form-control" %>
       </div>
       <div class="form-group">

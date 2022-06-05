@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     resources :licenses
     resources :users
     resources :projects
+    get 'projects/:id/post', to: 'projects#post', as: :post_project_path
   end
 end

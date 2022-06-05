@@ -41,10 +41,16 @@ class Admin::ProjectsController < ApplicationController
           end
         end
       end
-      redirect_to edit_admin_project_path(@project.id)
+      redirect_to admin_post_project_path_path(@project.id)
     else
       render "new"
     end
+  end
+
+  def post
+    @project = Project.find(params[:id])
+    @users = User.all
+    @members = ProjectUser.where(project: params[:id])
   end
 
   def edit
