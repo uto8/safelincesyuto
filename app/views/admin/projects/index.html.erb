@@ -10,8 +10,8 @@
 <table class="table">
   <thead class="thead-light">
     <tr>
-      <th scope="col">伝票名</th>
-      <th scope="col">手当</th>
+      <th scope="col">日付</th>
+      <th scope="col">業者名</th>
       <th scope="col">編集</th>
     </tr>
   </thead>
@@ -19,8 +19,8 @@
     <% @projects.each do |project| %>
       <% if admin? or project.is_read == nil %>
         <tr>
+          <td><%= project.date %></td>
           <td><%= project.name %></td>
-          <td><%#= project.fee %></td>
           <td><%= link_to "編集",edit_admin_project_path(project),class:"btn btn-warning font-weight-bold" %></td>
         </tr>
       <% end %>
