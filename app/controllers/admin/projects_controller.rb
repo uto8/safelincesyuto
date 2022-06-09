@@ -2,12 +2,12 @@ class Admin::ProjectsController < ApplicationController
   before_action :search
 
   def search
-    @q = Project.ransack(params[:q])
+    @q = Project.order(created_at: :desc).ransack(params[:q])
   end
 
   def index
     @project_results = @q.result(distinct: true)
-    @projects = Project.order(created_at: :DESC).page(params[:page]).per(10)
+    @projects = Project.page(params[:page]).per(10).order(created_at: :desc)
   end
 
   def new
