@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2022_05_20_134802) do
   end
 
   create_table "licenses", charset: "utf8mb4", force: :cascade do |t|
-    t.string "name"
+    t.string "title"
     t.integer "fee"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -18,7 +18,7 @@
   <tbody>
     <% @licenses.each do |license| %>
       <tr>
-        <td><%= license.name %></td>
+        <td><%= license.title %></td>
         <td><%= license.fee %></td>
         <td><%= link_to "編集",edit_admin_license_path(license),class:"btn btn-warning font-weight-bold" %></td>
       </tr>

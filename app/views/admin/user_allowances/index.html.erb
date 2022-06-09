@@ -1,0 +1,16 @@
+<div class="row mb-5">
+  <div class="col-12">
+    <h2 class="font-weight-bold">手当月一覧</h2>
+  </div>
+</div>
+<table>
+  <tbody>
+    <% @monthly_allowance.each do |allowance| %>
+      <tr>
+        <td>
+          <%= link_to allowance.month, admin_user_allowance_list_path(allowance.month), class: "font-weight-bold" %>の給与
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
