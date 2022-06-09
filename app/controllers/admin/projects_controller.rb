@@ -2,12 +2,12 @@ class Admin::ProjectsController < ApplicationController
   before_action :search
 
   def search
-    @q = Project.ransack(params[:q])
+    @q = Project.order(created_at: :desc).ransack(params[:q])
   end
 
   def index
     @project_results = @q.result(distinct: true)
-    @projects = Project.order(created_at: :DESC).page(params[:page]).per(10)
+    @projects = Project.page(params[:page]).per(10).order(created_at: :desc)
   end
 
   def new
@@ -19,18 +19,18 @@ class Admin::ProjectsController < ApplicationController
     @project = Project.create(project_params)
     if @project.save
       flash[:success] = "伝票の作成に成功しました。"
-      @leader_license = License.find_by(name: "隊長手当")
+      @leader_license = License.find_by(title: "隊長手当")
       UserAllowance.create(user_id: @project.leader_id, license_id: @leader_license.id, date: @project.date, price: @leader_license.fee)
-      @driver_license = License.find_by(name: "運転手当")
+      @driver_license = License.find_by(title: "運転手当")
       @project.drivers.each do |driver| 
         UserAllowance.create!(user_id: driver.user_id, license_id: @driver_license.id, date: @project.date, price: @driver_license.fee)
       end
-      @trip_license = License.find_by(name: "出張手当")
+      @trip_license = License.find_by(title: "出張手当")
       @project.trips.each do |trip| 
         UserAllowance.create!(user_id: trip.user_id, license_id: @trip_license.id, date: @project.date, price: @trip_license.fee)
       end
       if @project.is_registration == true
-        @registration_license = License.find_by(name: "規制手当")
+        @registration_license = License.find_by(title: "規制手当")
         @project.project_users.each do |user|
           UserAllowance.create!(user_id: user.user_id, license_id: @registration_license.id, date: @project.date, price: @registration_license.fee)
         end
@@ -70,6 +70,14 @@ class Admin::ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     if @project.update(project_params)
       flash[:success] = "伝票の編集に成功しました。"
+      @driver_license = License.find_by(title: "運転手当")
+      @project.drivers.each do |driver| 
+        UserAllowance.create!(user_id: driver.user_id, license_id: @driver_license.id, date: @project.date, price: @driver_license.fee)
+      end
+      @trip_license = License.find_by(title: "出張手当")
+      @project.trips.each do |trip| 
+        UserAllowance.create!(user_id: trip.user_id, license_id: @trip_license.id, date: @project.date, price: @trip_license.fee)
+      end
       redirect_to admin_projects_path
     else
       render "edit"

@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :admin do
     get '/dashboard', to: 'pages#index'
+    get '/user_allowances', to: 'user_allowances#index'
+    get 'user_allowances/:month', to: 'user_allowances#list', as: :user_allowance_list
+    get 'user_allowances/:month/user/:id', to: 'user_allowances#allowance', as: :user_allowance_allowance
     resources :licenses
     resources :users
     resources :projects
@@ -14,4 +17,5 @@ Rails.application.routes.draw do
       end
     end
   end
+  get '*path', controller: 'application', action: 'render_404'
 end

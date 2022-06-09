@@ -1,6 +1,6 @@
 class Admin::LicensesController < ApplicationController
   def index
-    @licenses = License.page(params[:page]).per(10)
+    @licenses = License.page(params[:page]).per(10).order(created_at: :desc)
   end
 
   def new
@@ -39,6 +39,6 @@ class Admin::LicensesController < ApplicationController
 
   private
   def license_params
-    params.require(:license).permit(:name, :fee)
+    params.require(:license).permit(:title, :fee)
   end
 end
