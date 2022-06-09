@@ -54,7 +54,7 @@ class Admin::ProjectsController < ApplicationController
     end
   end
 
-  def edit_member
+  def edit_member_license
     @project = Project.find(params[:id])
     @users = User.all
     @members = ProjectUser.where(project: params[:id])
