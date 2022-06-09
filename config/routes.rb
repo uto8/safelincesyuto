@@ -7,6 +7,11 @@ Rails.application.routes.draw do
     resources :licenses
     resources :users
     resources :projects
-    get 'projects/:id/post', to: 'projects#post', as: :post_project_path
+    get 'projects/:id/post', to: 'projects#edit_member', as: :post_project_path
+    resources :projects do
+      collection do
+        get 'search'
+      end
+    end
   end
 end

@@ -1,6 +1,13 @@
 class Admin::ProjectsController < ApplicationController
+  before_action :search
+
+  def search
+    @q = Project.ransack(params[:q])
+  end
+
   def index
-    @projects = Project.page(params[:page]).per(10)
+    @project_results = @q.result(distinct: true)
+    @projects = Project.order(created_at: :DESC).page(params[:page]).per(10)
   end
 
   def new
@@ -47,7 +54,7 @@ class Admin::ProjectsController < ApplicationController
     end
   end
 
-  def post
+  def edit_member
     @project = Project.find(params[:id])
     @users = User.all
     @members = ProjectUser.where(project: params[:id])
