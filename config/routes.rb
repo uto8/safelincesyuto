@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'pages#index'
     resources :licenses
     resources :users
-    resources :projects
+    resources :projects do
+      collection do
+        get 'search'
+      end
+    end
   end
 end
