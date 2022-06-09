@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     get 'user_allowances/:month/user/:id', to: 'user_allowances#allowance', as: :user_allowance_allowance
     resources :licenses
     resources :users
-    resources :projects
+    resources :projects do
+      collection do
+        get 'search'
+      end
+    end
   end
+  get '*path', controller: 'application', action: 'render_404'
 end
