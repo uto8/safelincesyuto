@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     get 'user_allowances/:month/user/:id', to: 'user_allowances#allowance', as: :user_allowance_allowance
     resources :licenses
     resources :users
+    resources :projects
+    get 'projects/:id/edit_member_license', to: 'projects#edit_member_license', as: :edit_member_license_project_path
     resources :projects do
       collection do
         get 'search'
