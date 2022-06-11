@@ -1,4 +1,7 @@
 class Admin::LicensesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :admin_user
+
   def index
     @licenses = License.page(params[:page]).per(10).order(created_at: :desc)
   end
@@ -40,5 +43,9 @@ class Admin::LicensesController < ApplicationController
   private
   def license_params
     params.require(:license).permit(:title, :fee)
+  end
+
+  def admin_user
+    redirect_to root_path unless current_user.is_admin == true
   end
 end

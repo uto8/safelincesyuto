@@ -1,4 +1,7 @@
 class Admin::UsersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :admin_user, except: :show
+
   def index
     @users = User.page(params[:page]).per(10).order(created_at: :desc)
   end
@@ -45,5 +48,9 @@ class Admin::UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :email, :password, :is_admin, license_users_attributes: [:license_id, :user_id])
+  end
+
+  def admin_user
+    redirect_to root_path unless current_user.is_admin == true
   end
 end
