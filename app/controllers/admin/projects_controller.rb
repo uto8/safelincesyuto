@@ -48,7 +48,7 @@ class Admin::ProjectsController < ApplicationController
           end
         end
       end
-      redirect_to admin_post_project_path_path(@project.id)
+      redirect_to admin_edit_member_license_project_path_path(@project.id)
     else
       render "new"
     end
