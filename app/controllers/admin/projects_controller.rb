@@ -88,10 +88,10 @@ class Admin::ProjectsController < ApplicationController
   private
   def project_params
     params.require(:project).permit(:name, :date, :start_time, :end_time, :leader_id, :is_registration, :address, :supplement, :is_read,
-       project_users_attributes: [:project_id, :user_id],
-       project_licenses_attributes: [:project_id, :license_id],
-       drivers_attributes: [:project_id, :user_id],
-       trips_attributes: [:project_id, :user_id]
+       project_users_attributes: [:id,:project_id, :user_id, :_destroy],
+       project_licenses_attributes: [:id,:project_id, :license_id, :_destroy],
+       drivers_attributes: [:id,:project_id, :user_id, :_destroy],
+       trips_attributes: [:id,:project_id, :user_id, :_destroy]
       )
   end
 end
