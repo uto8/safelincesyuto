@@ -44,6 +44,6 @@ class Admin::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :is_admin, license_users_attributes: [:license_id, :user_id])
+    params.require(:user).permit(:name, :email, :password, :is_admin, license_users_attributes: [:id, :license_id, :user_id, :_destroy])
   end
 end
