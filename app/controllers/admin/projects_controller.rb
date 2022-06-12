@@ -13,6 +13,7 @@ class Admin::ProjectsController < ApplicationController
   def new
     @project = Project.new
     @users = User.all
+    @licenses = License.where.not(title: "隊長手当").where.not(title: "運転手当").where.not(title: "出張手当").where.not(title: "規制手当")
   end
 
   def create
@@ -64,6 +65,7 @@ class Admin::ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @users = User.all
     @members = ProjectUser.where(project: params[:id])
+    @licenses = License.where.not(title: "隊長手当").where.not(title: "運転手当").where.not(title: "出張手当").where.not(title: "規制手当")
   end
 
   def update
