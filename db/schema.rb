@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2022_05_20_134802) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id", "user_id"], name: "index_drivers_on_project_id_and_user_id", unique: true
     t.index ["project_id"], name: "index_drivers_on_project_id"
     t.index ["user_id"], name: "index_drivers_on_user_id"
   end
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(version: 2022_05_20_134802) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["license_id"], name: "index_project_licenses_on_license_id"
+    t.index ["project_id", "license_id"], name: "index_project_licenses_on_project_id_and_license_id", unique: true
     t.index ["project_id"], name: "index_project_licenses_on_project_id"
   end
 
@@ -52,6 +54,7 @@ ActiveRecord::Schema.define(version: 2022_05_20_134802) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id", "user_id"], name: "index_project_users_on_project_id_and_user_id", unique: true
     t.index ["project_id"], name: "index_project_users_on_project_id"
     t.index ["user_id"], name: "index_project_users_on_user_id"
   end
@@ -76,6 +79,7 @@ ActiveRecord::Schema.define(version: 2022_05_20_134802) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id", "user_id"], name: "index_trips_on_project_id_and_user_id", unique: true
     t.index ["project_id"], name: "index_trips_on_project_id"
     t.index ["user_id"], name: "index_trips_on_user_id"
   end
@@ -83,11 +87,14 @@ ActiveRecord::Schema.define(version: 2022_05_20_134802) do
   create_table "user_allowances", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "license_id", null: false
+    t.bigint "project_id", null: false
     t.integer "price"
     t.date "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["license_id"], name: "index_user_allowances_on_license_id"
+    t.index ["project_id"], name: "index_user_allowances_on_project_id"
+    t.index ["user_id", "license_id", "project_id"], name: "index_user_allowances_on_user_id_and_license_id_and_project_id", unique: true
     t.index ["user_id"], name: "index_user_allowances_on_user_id"
   end
 
@@ -117,5 +124,6 @@ ActiveRecord::Schema.define(version: 2022_05_20_134802) do
   add_foreign_key "trips", "projects"
   add_foreign_key "trips", "users"
   add_foreign_key "user_allowances", "licenses"
+  add_foreign_key "user_allowances", "projects"
   add_foreign_key "user_allowances", "users"
 end

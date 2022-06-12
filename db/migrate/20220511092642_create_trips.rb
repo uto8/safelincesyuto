@@ -6,5 +6,6 @@ class CreateTrips < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+    add_index  :trips, [:project_id, :user_id], unique: true
   end
 end

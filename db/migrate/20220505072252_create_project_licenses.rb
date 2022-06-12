@@ -6,5 +6,6 @@ class CreateProjectLicenses < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+    add_index  :project_licenses, [:project_id, :license_id], unique: true
   end
 end

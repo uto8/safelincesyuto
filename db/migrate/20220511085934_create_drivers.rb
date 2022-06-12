@@ -6,5 +6,6 @@ class CreateDrivers < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+    add_index  :drivers, [:project_id, :user_id], unique: true
   end
 end
