@@ -1,5 +1,6 @@
 class Admin::ProjectsController < ApplicationController
   before_action :search
+  before_action :authenticate_user!
 
   def search
     @q = Project.order(created_at: :desc).ransack(params[:q])
