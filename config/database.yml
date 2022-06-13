@@ -19,3 +19,9 @@ test:
   host: db
   username: root
   password: password
+
+production:
+  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5

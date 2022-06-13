@@ -61,3 +61,6 @@ gem 'devise-i18n'
 gem 'cocoon'
 gem 'simple_calendar'
 gem 'ransack'
+group :production do
+  gem 'pg'
+end
