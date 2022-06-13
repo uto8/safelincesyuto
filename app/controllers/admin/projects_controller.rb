@@ -22,19 +22,19 @@ class Admin::ProjectsController < ApplicationController
     if @project.save
       flash[:success] = "伝票の作成に成功しました。"
       @leader_license = License.find_by(title: "隊長手当")
-      UserAllowance.create(user_id: @project.leader_id, license_id: @leader_license.id, date: @project.date, price: @leader_license.fee)
+      UserAllowance.create(user_id: @project.leader_id, license_id: @leader_license.id, project_id: @project.id, date: @project.date, price: @leader_license.fee)
       @driver_license = License.find_by(title: "運転手当")
       @project.drivers.each do |driver| 
-        UserAllowance.create!(user_id: driver.user_id, license_id: @driver_license.id, date: @project.date, price: @driver_license.fee)
+        UserAllowance.create!(user_id: driver.user_id, license_id: @driver_license.id, project_id: @project.id, date: @project.date, price: @driver_license.fee)
       end
       @trip_license = License.find_by(title: "出張手当")
       @project.trips.each do |trip| 
-        UserAllowance.create!(user_id: trip.user_id, license_id: @trip_license.id, date: @project.date, price: @trip_license.fee)
+        UserAllowance.create!(user_id: trip.user_id, license_id: @trip_license.id, project_id: @project.id, date: @project.date, price: @trip_license.fee)
       end
       if @project.is_registration == true
         @registration_license = License.find_by(title: "規制手当")
         @project.project_users.each do |user|
-          UserAllowance.create!(user_id: user.user_id, license_id: @registration_license.id, date: @project.date, price: @registration_license.fee)
+          UserAllowance.create!(user_id: user.user_id, license_id: @registration_license.id, project_id: @project.id, date: @project.date, price: @registration_license.fee)
         end
       end
       # その他資格保存
@@ -73,13 +73,28 @@ class Admin::ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     if @project.update(project_params)
       flash[:success] = "伝票の編集に成功しました。"
+      @leader_license = License.find_by(title: "隊長手当")
+      UserAllowance.create(user_id: @project.leader_id, license_id: @leader_license.id, project_id: @project.id, date: @project.date, price: @leader_license.fee)
       @driver_license = License.find_by(title: "運転手当")
       @project.drivers.each do |driver| 
-        UserAllowance.create!(user_id: driver.user_id, license_id: @driver_license.id, date: @project.date, price: @driver_license.fee)
+        UserAllowance.create!(user_id: driver.user_id, license_id: @driver_license.id, project_id: @project.id, date: @project.date, price: @driver_license.fee)
       end
       @trip_license = License.find_by(title: "出張手当")
       @project.trips.each do |trip| 
-        UserAllowance.create!(user_id: trip.user_id, license_id: @trip_license.id, date: @project.date, price: @trip_license.fee)
+        UserAllowance.create!(user_id: trip.user_id, license_id: @trip_license.id, project_id: @project.id, date: @project.date, price: @trip_license.fee)
+      end
+      # その他資格保存
+      @licenses = @project.project_licenses
+      @members = @project.project_users
+      @licenses.each do |license|
+        @members.each do |member|
+          @member_licenses = member.user.license_users
+          @member_licenses.each do |m|
+            if m.license_id == license.license_id
+              UserAllowance.create!(user_id: member.user_id, license_id: license.license_id, date: @project.date, price: license.license.fee)
+            end
+          end
+        end
       end
       redirect_to admin_projects_path
     else
