@@ -15,7 +15,7 @@
           <%= link_to 'ログアウト', destroy_user_session_path, class: 'nav-link', method: :delete %>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="#">アカウント</a>
+          <%= link_to "アカウント", admin_user_path(current_user), class:"nav-link" %>
         </li>
         <li class="nav-item active">
           <%= link_to "プロジェクト", admin_projects_path, class:"nav-link" %>
