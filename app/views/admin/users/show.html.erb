@@ -1,2 +1,15 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="row mb-5">
+  <div class="col-6 font-weight-bold">
+    <h2>プロフィール</h2>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    プロフィール
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= @user.name %></h5>
+    <p class="card-text"><%= @user.email %></p>
+  </div>
+</div>
