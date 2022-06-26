@@ -40,9 +40,14 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
-    flash[:success] = "社員の削除に成功しました。"
-    redirect_to admin_users_path
+    begin
+      @user.destroy
+      flash[:success] = "社員の削除に成功しました。"
+      redirect_to admin_users_path
+    rescue
+      render "edit"
+      flash[:danger] = "社員の削除に失敗しました。"
+    end
   end
 
   private
