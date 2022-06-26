@@ -73,8 +73,8 @@
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :leader_id, "リーダー" %>
-        <%= f.collection_select :leader_id, @users, :id, :name, {prompt: "リーダーを選択してください"}, {class: 'form-control'} %>
+        <%= f.label :leader_id, "隊長" %>
+        <%= f.select :leader_id, @members.map{|member| [member.user.name, member.user_id]}, {prompt: "隊長を選択してください"}, {class: 'form-control'} %>
       </div>
       <div class="form-group" id='detail-association-insertion-point'>
         <%= f.label :project_licenses, "資格" %>

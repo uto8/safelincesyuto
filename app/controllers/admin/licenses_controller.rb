@@ -36,8 +36,14 @@ class Admin::LicensesController < ApplicationController
 
   def destroy
     @license=License.find(params[:id])
-    @license.destroy
-    redirect_to admin_licenses_path
+    begin
+      @license.destroy
+      flash[:success] = "資格の削除に成功しました。"
+      redirect_to admin_licenses_path
+    rescue
+      render "edit"
+      flash[:danger] = "資格の削除に失敗しました。"
+    end
   end
 
   private

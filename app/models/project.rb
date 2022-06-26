@@ -24,4 +24,6 @@ class Project < ApplicationRecord
   has_many :users, through: :trips
   accepts_nested_attributes_for :trips, allow_destroy: true
   validates_associated :users
+
+  has_many :user_allowance, dependent: :destroy
 end
