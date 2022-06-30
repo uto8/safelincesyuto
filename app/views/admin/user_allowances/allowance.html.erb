@@ -6,6 +6,7 @@
     <%= link_to "ユーザー一覧",admin_user_allowance_list_path(@month),class:"btn btn-warning font-weight-bold" %>
   </div>
 </div>
+<%= link_to "csvで出力する",admin_user_allowance_allowance_path(format: :csv) %>
 <div class="table-responsive mb-3">
   <%= month_calendar events:@user_allowances do |date,allowances| %>
     <%= date %><br>
